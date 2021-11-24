@@ -27,12 +27,12 @@
 
   <div fxFlex="40" *ngIf="dish">
     <h1>Comments</h1>
+    <ul  *ngFor="let d of dish.comments" class="no-list">
+      <li>{{d.comment}}</li>
+      <li>{{d.rating}} Stars</li>
+      <li> --- {{d.author}} {{d.date}}</li>
+    </ul>
 
-    <mat-list *ngFor="let d of dish.comments"  class="content-list-commit">
-      <mat-list-item class="margin-list-commit"> {{d.comment}} </mat-list-item>
-      <mat-list-item> {{d.rating}} Stars</mat-list-item>
-      <mat-list-item> --- {{d.author}} {{d.date}}  </mat-list-item>
-     </mat-list>
   </div>
 
 </div>
