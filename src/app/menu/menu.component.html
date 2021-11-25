@@ -22,8 +22,8 @@
 
 
 
-    <app-dishdetail [dish] = "selectedDish"></app-dishdetail>
-
+  <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]">
+  </mat-grid-tile>
 
 
 
