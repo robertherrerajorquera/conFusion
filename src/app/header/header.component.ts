@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig} from '@angular/material';
 
 
 import { LoginComponent } from '../login/login.component';
@@ -12,13 +12,27 @@ import { LoginComponent } from '../login/login.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {
+  }
+
 
   ngOnInit() {
   }
 
   openLoginForm() {
-    this.dialog.open(LoginComponent);
-  }
+  //  this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
+    //  console.log('open');
+    const dialogConfig = new MatDialogConfig();
 
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+        id: 1,
+        title: 'Angular For Beginners'
+    };
+
+    this.dialog.open(LoginComponent, dialogConfig);
+
+}
 }
