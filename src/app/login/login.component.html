@@ -1,6 +1,6 @@
 <p>{{ user | json }}</p>
 
-<form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
+<form novalidate #loginForm="ngForm" id="loginForm" (ngSubmit)="onSubmit()" style="display: block;">
 
   <mat-dialog-content>
     <p>
