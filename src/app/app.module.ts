@@ -43,6 +43,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     LoginComponent,
   ],
+  entryComponents: [LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -57,13 +58,10 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
   ],
   providers: [DishService, PromotionService, LeaderService],
   bootstrap: [AppComponent],
-  entryComponents: [
-    LoginComponent
-],
-
 })
 export class AppModule { }
