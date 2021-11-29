@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
     console.log('inicial selectDishes'+this.selectedDish.description);
   }
   onSelect(dish: Dish) {
-    if(dish !== null || dish!== undefined || dish !== '') {
+    if(dish !== null || dish!== undefined) {
   this.selectedDish = dish;
     console.log(this.selectedDish);
     console.log('final selectDishes'+this.selectedDish.description);
