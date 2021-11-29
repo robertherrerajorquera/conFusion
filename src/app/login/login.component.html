@@ -1,6 +1,6 @@
 <p>{{ user | json }}</p>
 
-<form novalidate #loginForm="ngForm" id="loginForm" (ngSubmit)="onSubmit()" style="display: block;">
+<form novalidate #loginForm="ngForm" id="loginForm" (ngSubmit)="onSubmit()">
 
   <mat-dialog-content>
     <p>
@@ -17,8 +17,8 @@
   </mat-dialog-content>
   <mat-dialog-actions>
     <span class="flex-spacer"></span>
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button>Cancel</button>
     <button type="submit" mat-button class="background-primary text-floral-white" >Login</button>
-    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.form.invalid">Login</button>
+    <!-- <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.form.invalid">Login</button> -->
   </mat-dialog-actions>
 </form>
