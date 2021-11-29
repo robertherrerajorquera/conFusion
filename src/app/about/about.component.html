@@ -72,21 +72,21 @@
 
 
 
-    <mat-list class="no-list"*ngFor="let leaderResult of leader" style="margin-bottom: 1em;">
+    <mat-list class="no-list" *ngIf="leader"  >
+
+      <mat-list-item *ngFor="let leaderResult of leader" style="margin-top: 5em;margin-bottom: 1em;">
       <img
       class="rounded-circle float-left"
       src="{{ leaderResult.image }}"
-      alt=""
-    />
-      <mat-list-item
-        ><p>{{ leaderResult.name }} {{ leaderResult.abbr }}</p></mat-list-item
-      >
-      <mat-list-item>
-        <p>{{ leaderResult.designation }}</p></mat-list-item
-      >
-      <mat-list-item>
-        <p>{{ leaderResult.description }}</p></mat-list-item
-      >
+      alt=""/>
+        <p>{{ leaderResult.name }} {{ leaderResult.abbr }}</p>
+        <p>{{ leaderResult.designation }}</p>
+        <p>{{ leaderResult.description }}</p>
+      </mat-list-item>
+
     </mat-list>
+    <div fxFlex [hidden]="leader">
+      <mat-spinner><h4>Loading ... PLease Wait!!</h4></mat-spinner>
+    </div>
   </div>
 </div>
