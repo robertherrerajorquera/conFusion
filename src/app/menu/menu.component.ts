@@ -12,6 +12,8 @@ import { DishService } from '../services/dish.service';
   styleUrls: ['./menu.component.scss']
 })
 
+
+
 export class MenuComponent implements OnInit {
 
   dishes: Dish[] = DISHES;
