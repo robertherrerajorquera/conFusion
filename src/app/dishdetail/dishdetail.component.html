@@ -1,35 +1,43 @@
-<div class="container"
-    fxLayout="row"
-    fxLayout.sm="column"
-    fxLayout.xs="column"
-    fxLayoutAlign.gt-md="space-around center"
-    fxLayoutGap="10px"
-    fxLayoutGap.xs="0">
-
-
-
-  <div fxFlex="100">
-    <div>
-      <h3 ngIf="dish">{{dish.name | uppercase}}</h3>
-      <hr>
-    </div>
+<div
+  class="container"
+  fxLayout="row"
+  fxLayout.sm="column"
+  fxLayout.xs="column"
+  fxLayoutAlign.gt-md="space-around center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0"
+>
+  <div fxFlex="40" ngIf="dish">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>{{ dish.name | uppercase }}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-img src="{{ dish.image }}" alt="{{ dish.name }}" />
+      <mat-card-content>
+        <p>{{ dish.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="goBack()">BACK</button>
+        <button mat-button >LIKE</button>
+        <button mat-button >SHARE</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
-  <mat-card-actions>
-    <button mat-button (click)="goBack()">BACK</button>
-  </mat-card-actions>
 
   <div fxFlex="40" *ngIf="dish">
-    <h1>Comments</h1>
-    <mat-list *ngFor="let dishResult of dish.comments"  class="no-list">
-      <p>{{dishResult.comment}}</p>
-      <p>{{dishResult.rating}} Stars</p>
-      <p> --- {{dishResult.author}} <span>{{dishResult.date | date}}</span></p>
-    </mat-list>
+    <h3>Comments</h3>
+    <mat-list-item *ngFor="let dishResult of dish.comments" class="no-list">
+      <p>{{ dishResult.comment }}</p>
+      <p>{{ dishResult.rating }} Stars</p>
+      <p>
+        --- {{ dishResult.author }} <span>{{ dishResult.date | date }}</span>
+      </p>
+    </mat-list-item>
+    <a (click)="goBack()" class="card-link btn btn-primary btn-sm">BACK</a>
   </div>
   <div fxFlex [hidden]="dish">
     <mat-spinner><h4>Loading ... PLease Wait!!</h4></mat-spinner>
   </div>
-
-
 </div>
-

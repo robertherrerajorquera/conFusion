@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   leader: Leader[] = LEADERS;
   leaderPromotion: Leader = new Leader();
   dish : Dish = new Dish();
-  promotion: Promotion =new Dish();
+  promotion: Promotion = new Dish();
   constructor(private dishservice: DishService,
     private promotionservice: PromotionService,
     private leaderservice: LeaderService,
@@ -29,11 +29,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
      this.dishservice.getFeaturedDish()
-     .then(dish => this.dish = dish);
+     .subscribe(dish => this.dish = dish);
      this.promotionservice.getFeaturedPromotion()
-     .then(promotion => this.promotion = promotion);
+     .subscribe(promotion => this.promotion = promotion);
      this.leaderservice.getFeaturedLeader()
-     .then(leaderPromotion => this.leaderPromotion = leaderPromotion);
+     .subscribe(leaderPromotion => this.leaderPromotion = leaderPromotion);
     console.log(this.leader);
   }
 

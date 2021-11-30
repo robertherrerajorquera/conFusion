@@ -16,27 +16,16 @@ export class MenuComponent implements OnInit {
 
   dishes: Dish[] = DISHES;
 
-  selectedDish: Dish = new Dish();
 
- // dishes: Dish[] = DISHES; ant
-
-
- // selectedDish: Dish = new Dish(); ant
 
  constructor(private dishService: DishService) { }
 
   ngOnInit() {
-     this.dishService.getDishes()
-     .then((dishes) => this.dishes = dishes);
+     this.dishService.getDishes().subscribe((dishes) => this.dishes = dishes);
     console.log('inicial dishes'+this.dishes.length);
-    console.log('inicial selectDishes'+this.selectedDish.description);
-  }
-  onSelect(dish: Dish) {
-    if(dish !== null || dish!== undefined) {
-  this.selectedDish = dish;
-    console.log(this.selectedDish);
-    console.log('final selectDishes'+this.selectedDish.description);
-    }
+   // console.log('inicial selectDishes'+this.selectedDish.description);
 
   }
+
+
 }
