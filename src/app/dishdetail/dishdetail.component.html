@@ -1,12 +1,5 @@
-<div
-  class="container"
-  fxLayout="row"
-  fxLayout.sm="column"
-  fxLayout.xs="column"
-  fxLayoutAlign.gt-md="space-around center"
-  fxLayoutGap="10px"
-  fxLayoutGap.xs="0"
->
+<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+  fxLayoutAlign.gt-md="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
   <div fxFlex="40" *ngIf="dish">
     <mat-card>
       <mat-card-header>
@@ -14,7 +7,7 @@
           <h3>{{ dish.name | uppercase }}</h3>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-img src="{{ dish.image }}" alt="{{ dish.name }}" width="100%"/>
+      <img mat-card-img src="{{ dish.image }}" alt="{{ dish.name }}" width="100%" />
       <mat-card-content>
         <p>{{ dish.description }}</p>
       </mat-card-content>
@@ -22,8 +15,8 @@
         <button mat-button [routerLink]="['/dishdetail', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
 
         <button mat-button (click)="goBack()">BACK</button>
-        <button mat-button >LIKE</button>
-        <button mat-button >SHARE</button>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
         <span class="flex-spacer"></span>
         <button mat-button [routerLink]="['/dishdetail', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
       </mat-card-actions>
@@ -38,7 +31,25 @@
       <p matLine>
         <span>--- {{ dishResult.author }}{{ dishResult.date | date }}</span>
       </p>
+
     </mat-list-item>
+    <mat-list-item fxFlex="40"  *ngIf="dish" [formGroup]="createForm">
+      <mat-form-field class="half-width">
+        <input matInput formControlName="firstname" placeholder="First Name" type="text"
+          [(ngModel)]="formErrors.firstname">
+        <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <mat-slider formControlName="rating" [(ngModel)]="slider1" [thumbLabel]="true" [min]="0" [max]="5"></mat-slider>
+        <mat-error *ngIf="formErrors.rating">{{formErrors.rating}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="half-width" appearance="fill">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput formControlName="comment" placeholder="comment" type="text" [(ngModel)]="formErrors.comment"></textarea>
+        <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+      </mat-form-field>
+    </mat-list-item>
+
     <a (click)="goBack()" class="card-link btn btn-primary btn-sm">BACK</a>
   </div>
   <div fxFlex [hidden]="dish">

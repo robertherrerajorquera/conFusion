@@ -11,3 +11,4 @@ export class Dish {
   description: string = '';
   comments: Comment[] = [];
 }
+export const ContactType = ['none', 'Tel','Email'];
