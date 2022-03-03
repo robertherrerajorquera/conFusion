@@ -26,15 +26,15 @@ export class DishdetailComponent implements OnInit {
 
 
   formErrors = {
-    firstname: '',
-    rating: '',
+    author: '',
+    rating: 0,
     comment: '',
   };
 
 
 
   validationMessages = {
-    firstname: {
+    author: {
       required: 'First Name is required.',
       minlength: 'First Name must be at least 2 characters long.',
       maxlength: 'FirstName cannot be more than 25 characters long.',
@@ -55,7 +55,7 @@ export class DishdetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder) {
-      this.createForm();
+       this.createForm();
      }
 
   ngOnInit() {
@@ -80,38 +80,33 @@ export class DishdetailComponent implements OnInit {
 
   createForm() {
     this.dishForm = this.fb.group({
-      firstname: [
-        new FormControl(''),
+      author: ['',
         [
           Validators.required,
-          Validators.minLength(2),
+          Validators.minLength(3),
           Validators.maxLength(25),
         ],
       ],
-      rating: [
-        new FormControl(''),
+      rating: [1,
         [
-          Validators.required,
-          Validators.minLength(0),
+          Validators.minLength(1),
           Validators.maxLength(5),
         ],
       ],
-      comment: [
-        new FormControl(''),
+      comment: ['',
         [
-          Validators.minLength(2),
+          Validators.required,
+          Validators.minLength(3),
           Validators.maxLength(100),
         ],
       ],
-      contacttype: 'None',
-
     });
     this.dishForm.valueChanges.subscribe((data) =>
       this.onValueChanged(data)
     );
 
-    this.onValueChanged(); // (re)set validation messages now
-  };
+     this.onValueChanged(); // (re)set validation messages now
+   };
 
 
 
@@ -142,15 +137,16 @@ export class DishdetailComponent implements OnInit {
 
 
   onSubmit() {
-    this.dish = this.dishForm.value;
-    console.log(this.dish);
-    this.dishForm.reset({
-      firstname: '',
-      rating: '',
-      commet: '',
-      contacttype: 'None',
-    });
-    this.feedbackFormDirective.resetForm();
+   // this.dish = this.dishForm.value;
+   this.dishForm.value.date = new Date().toDateString();
+   this.dish.comments.push(this.dishForm.value);
+    console.log('juaan es: ', this.dish);
+      this.dishForm.reset({
+        author: '',
+        rating: 0,
+        commet: '',
+      });
+     this.feedbackFormDirective.resetForm();
   }
 
 

@@ -25,6 +25,7 @@
 
   <div fxFlex="40" *ngIf="dish">
     <h3>Comments</h3>
+    <mat-list>
     <mat-list-item *ngFor="let dishResult of dish.comments" class="no-list">
       <h4 matLine>{{ dishResult.comment }}</h4>
       <p matLine>{{ dishResult.rating }} Stars</p>
@@ -33,24 +34,26 @@
       </p>
 
     </mat-list-item>
-    <mat-list-item fxFlex="40"  *ngIf="dish" [formGroup]="createForm">
-      <mat-form-field class="half-width">
-        <input matInput formControlName="firstname" placeholder="First Name" type="text"
-          [(ngModel)]="formErrors.firstname">
-        <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
+  </mat-list>
+  <mat-list style="margin-top: 50px;">
+    <mat-list-item fxFlex="100"  *ngIf="dish" [formGroup]="dishForm" #fform="ngForm" (ngSubmit)="onSubmit()" class="no-list">
+      <mat-form-field matLine class="half-width">
+        <input matInput formControlName="author" placeholder="Name" type="text"
+           [required]="true">
+          <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
       </mat-form-field>
-      <mat-form-field class="half-width">
-        <mat-slider formControlName="rating" [(ngModel)]="slider1" [thumbLabel]="true" [min]="0" [max]="5"></mat-slider>
+      <div class="half-width" matLine style="padding-top: 20px;">
+        <mat-slider role="slider" formControlName="rating" [thumbLabel]="true" [min]="0" [max]="5"></mat-slider>
         <mat-error *ngIf="formErrors.rating">{{formErrors.rating}}</mat-error>
-      </mat-form-field>
-      <mat-form-field class="half-width" appearance="fill">
-        <mat-label>Leave a comment</mat-label>
-        <textarea matInput formControlName="comment" placeholder="comment" type="text" [(ngModel)]="formErrors.comment"></textarea>
+      </div>
+      <mat-form-field class="half-width" appearance="fill" matLine>
+        <mat-label>Your Comment</mat-label>
+        <textarea matInput formControlName="comment" placeholder="comment" type="text" ></textarea>
         <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
       </mat-form-field>
+      <button mat-flat-button (click)="onSubmit()" style="width: 100px!important;" color="primary" matLine type="submit" [disabled]="dishForm.status !== 'INVALID'? false : true">Submit</button>
     </mat-list-item>
-
-    <a (click)="goBack()" class="card-link btn btn-primary btn-sm">BACK</a>
+  </mat-list>
   </div>
   <div fxFlex [hidden]="dish">
     <mat-spinner><h4>Loading ... PLease Wait!!</h4></mat-spinner>
